@@ -21,7 +21,7 @@ public class AlbumController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Album> GetAlbum(long id)
+    public ActionResult<Album?> GetAlbum(long id)
     {
         return AlbumManager.GetAlbum(id);
     }

@@ -8,9 +8,9 @@ public class HYBCacheManager
     private Dictionary<string, BaseManager> _MANAGERS { get; set; } = new Dictionary<string, BaseManager>();
     private Dictionary<string, Object> _MANAGER_LOCKS { get; set; } = new Dictionary<string, Object>();
 
-    public static T GetManager<T>(string managerName) where T : BaseManager
+    public static T GetManager<T>() where T : BaseManager
     {
-        return ManagerSingleton.GetManager().Get<T>(managerName);
+        return ManagerSingleton.GetManager().Get<T>(typeof(T).Name);
     }
 
     public HYBCacheManager()
