@@ -18,9 +18,5 @@ WORKDIR /App
 
 COPY --from=build-env /App/out .
 
-COPY ["servercert.pfx", "/https/servercert.pfx"]
-COPY ["cacert.crt", "/usr/local/share/ca-certificates/cacert.crt"]
-RUN update-ca-certificates
-
 ENTRYPOINT ["dotnet", "CoreCacheAPI.dll"]
 
