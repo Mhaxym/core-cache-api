@@ -18,5 +18,8 @@ WORKDIR /App
 
 COPY --from=build-env /App/out .
 
+COPY ["core-cache-api.pfx", "/https/core-cache-api.pfx"]
+RUN update-ca-certificates
+
 ENTRYPOINT ["dotnet", "CoreCacheAPI.dll"]
 

@@ -5,7 +5,12 @@ services:
     build: .
     restart: always
     container_name: core-cache-api
+    ports:
+      - "5000:5000"
     volumes:
       - ~/.aspnet/https:/https:ro
-    ports:
-      - 7240:7240
+    environment:
+      - ASPNETCORE_URLS=https://+:5000
+      - ASPNETCORE_HTTPS_PORT=5000
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/core-cache-api.pfx
