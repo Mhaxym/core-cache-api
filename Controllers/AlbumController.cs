@@ -26,9 +26,10 @@ public class AlbumController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Album?> GetAlbum(long id)
+    public async Task<ActionResult<Album?>> GetAlbum(long id)
     {
-        return Newtonsoft.Json.JsonConvert.DeserializeObject<Album>(_database.StringGet("AlbumManager/75116"));
+        var album = await _database.StringGetAsync("AlbumManager/75116");
+        return Newtonsoft.Json.JsonConvert.DeserializeObject<Album>(album);
     }
 
     [HttpPost]
