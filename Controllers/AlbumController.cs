@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using StackExchange.Redis;
 using TodoApi.Cache;
 
 namespace TodoApi.Controllers;
@@ -7,11 +8,15 @@ namespace TodoApi.Controllers;
 [Route("[controller]")]
 public class AlbumController : ControllerBase
 {
+
+    private readonly IDatabase _database;
+
     private readonly ILogger<AlbumController> _logger;
 
-    public AlbumController(ILogger<AlbumController> logger)
+    public AlbumController(ILogger<AlbumController> logger, IDatabase database)
     {
         _logger = logger;
+        _database = database;
     }
 
     [HttpGet(Name = "GetAlbums")]
@@ -23,7 +28,7 @@ public class AlbumController : ControllerBase
     [HttpGet("{id}")]
     public ActionResult<Album?> GetAlbum(long id)
     {
-        return AlbumManager.GetAlbum(id);
+        return Newtonsoft.Json.JsonConvert.DeserializeObject<Album>(_database.StringGet("AlbumManager/75117"));
     }
 
     [HttpPost]
