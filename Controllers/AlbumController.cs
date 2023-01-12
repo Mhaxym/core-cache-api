@@ -28,7 +28,7 @@ public class AlbumController : ControllerBase
     [HttpGet("{id}")]
     public ActionResult<Album?> GetAlbum(long id)
     {
-        return Newtonsoft.Json.JsonConvert.DeserializeObject<Album>(_database.StringGet("AlbumManager/75117"));
+        return Newtonsoft.Json.JsonConvert.DeserializeObject<Album>(_database.StringGet("AlbumManager/75116"));
     }
 
     [HttpPost]
