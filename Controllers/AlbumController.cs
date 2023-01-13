@@ -28,8 +28,15 @@ public class AlbumController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Album?>> GetAlbum(long id)
     {
-        var album = await _database.StringGetAsync("AlbumManager/75116");
-        return Newtonsoft.Json.JsonConvert.DeserializeObject<Album>(album);
+        var album = await _database.StringGetAsync("{AlbumManager}/99997");
+        if (album != RedisValue.Null && album.HasValue)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<Album>(album);
+        }
+        else
+        {
+            return NotFound();
+        }
     }
 
     [HttpPost]

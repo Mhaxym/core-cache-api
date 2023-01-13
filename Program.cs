@@ -7,10 +7,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // Add Redis connection
-string? redisHost = Environment.GetEnvironmentVariable("REDIS_HOST");
+var redisHost = Environment.GetEnvironmentVariable("REDIS_CLUSTER_URLS");
 if (redisHost != null)
 {
-    IConnectionMultiplexer redis = ConnectionMultiplexer.Connect(redisHost);
+    EndPointCollection endpoints = new EndPointCollection();
+    foreach (string host in redisHost.Split(','))
+    {
+        endpoints.Add(host);
+    }
+    ConfigurationOptions config = new ConfigurationOptions
+    {
+        EndPoints = endpoints,
+    };
+    IConnectionMultiplexer redis = ConnectionMultiplexer.Connect(config);
     builder.Services.AddScoped(s => redis.GetDatabase());
 }
 
