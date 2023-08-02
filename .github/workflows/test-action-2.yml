@@ -1,0 +1,20 @@
+name: Testing Action B
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Name of user'
+        required: true
+        default: 'Maxhym'
+      home:
+        description: 'Age of user'
+        required: false
+        default: '18'
+
+jobs:
+  say_hello_age:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "This is ${{ github.event.inputs.name }}"
+        echo "- ${{ github.event.inputs.home }}"
