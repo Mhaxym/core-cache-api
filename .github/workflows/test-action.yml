@@ -1,0 +1,20 @@
+name: Testing Action
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'x'
+        required: true
+        default: 'Test A'
+      home:
+        description: 'y'
+        required: false
+        default: 'Test B'
+
+jobs:
+  say_hello:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "This is $!"
+        echo "- and $!"
