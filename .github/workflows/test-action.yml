@@ -2,19 +2,14 @@ name: Testing Action
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Name of user'
+      host:
+        description: 'Host value'
         required: true
-        default: 'Maxhym'
-      home:
-        description: 'Location of user'
-        required: false
-        default: 'Mallorca'
-
+        default: 'http://test.com'
 jobs:
-  say_hello:
+  show_host:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "This is ${{ github.event.inputs.name }}"
-        echo "- from ${{ github.event.inputs.home }}"
+        echo "This is ${{ github.event.inputs.host }}"
+        
