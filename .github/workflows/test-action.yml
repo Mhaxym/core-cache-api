@@ -16,5 +16,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "This is $!"
-        echo "- and $!"
+        echo "This is ${{ github.event.inputs.name }}"
+        echo "- from ${{ github.event.inputs.home }}"
