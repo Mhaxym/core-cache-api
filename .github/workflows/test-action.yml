@@ -3,13 +3,13 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: 'x'
+        description: 'Name of user'
         required: true
-        default: 'Test A'
+        default: 'Maxhym'
       home:
-        description: 'y'
+        description: 'Location of user'
         required: false
-        default: 'Test B'
+        default: 'Mallorca'
 
 jobs:
   say_hello:
