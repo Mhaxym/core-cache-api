@@ -6,6 +6,10 @@ on:
         description: 'Host value'
         required: true
         default: 'http://test.com'
+      videos:
+        description: 'Video on'
+        required: true
+        default: 'false'
 jobs:
   show_host:
     runs-on: ubuntu-latest
