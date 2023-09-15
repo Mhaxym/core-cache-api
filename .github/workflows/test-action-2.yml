@@ -1,11 +1,12 @@
 name: Testing Action B
+run-name: Testing Action B [${{ inputs.host }}🔍]
 on:
   workflow_dispatch:
     inputs:
       host:
         description: 'Host value'
         required: true
-        default: 'http://test.com'
+        default: 'test.com'
       videos:
         description: 'Video on'
         required: true
